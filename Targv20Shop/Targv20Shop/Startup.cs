@@ -33,6 +33,7 @@ namespace Targv20Shop
                 options.UseSqlServer(_config["DeafultConnetion"]));
 
             services.AddScoped<IProductService, ProductServices>();
+            services.AddScoped<IFileServices, FileServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
