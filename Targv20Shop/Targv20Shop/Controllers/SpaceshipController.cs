@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,15 @@ namespace Targv20Shop.Controllers
                 Prize = model.Prize,
                 Type = model.Type,
                 CreatedAt = model.CreatedAt,
-                ModifiedAt = model.ModifiedAt
+                ModifiedAt = model.ModifiedAt,
+                Files = model.Files,
+                Image = model.Image.Select(x => new FileToDatabaseDto
+                {
+                    Id = x.Id,
+                    ImageData = x.ImageData,
+                    ImageTitle = x.ImageTitle,
+                    SpaceshipId = x.SpaceshipId
+                }).ToArray()
             };
 
             var result = await _spaceshipService.Add(dto);
@@ -88,6 +97,17 @@ namespace Targv20Shop.Controllers
                 return NotFound();
             }
 
+            var photos = await _context.FileToDatabase
+                .Where(x => x.SpaceshipId == id)
+                .Select(m => new ImagesViewModel
+                {
+                    ImageData = m.ImageData,
+                    Id = m.Id,
+                    Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(m.ImageData)),
+                    ImageTitle = m.ImageTitle,
+                    SpaceshipId = m.Id
+                }).ToArrayAsync();
+
             var model = new SpaceshipViewModel();
 
             model.Id = spaceship.Id;
@@ -99,6 +119,7 @@ namespace Targv20Shop.Controllers
             model.ConstructedAt = spaceship.ConstructedAt;
             model.CreatedAt = spaceship.CreatedAt;
             model.ModifiedAt = spaceship.ModifiedAt;
+            model.Image.AddRange(photos);
 
             return View(model);
         }
@@ -116,7 +137,14 @@ namespace Targv20Shop.Controllers
                 Prize = model.Prize,
                 Type = model.Type,
                 CreatedAt = model.CreatedAt,
-                ModifiedAt = model.ModifiedAt
+                ModifiedAt = model.ModifiedAt,
+                Image = model.Image.Select(x => new FileToDatabaseDto
+                {
+                    Id = x.Id,
+                    ImageData = x.ImageData,
+                    ImageTitle = x.ImageTitle,
+                    SpaceshipId = x.SpaceshipId
+                })
             };
 
             var result = await _spaceshipService.Update(dto);

@@ -1,5 +1,6 @@
-﻿using System;
-
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 
 namespace Targv20Shop.Models.Spaceship
 {
@@ -14,5 +15,8 @@ namespace Targv20Shop.Models.Spaceship
         public DateTime ConstructedAt { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+
+        public List<IFormFile> Files { get; set; }
+        public List<ImagesViewModel> Image { get; set; } = new List<ImagesViewModel>();
     }
 }
