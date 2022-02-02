@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace Shop.Models.Weather
+namespace Targv20Shop.Models.Weather
 {
     public class SearchCity
     {
