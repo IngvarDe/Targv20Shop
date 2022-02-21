@@ -50,15 +50,15 @@ namespace Targv20Shop.Controllers
 
             CityViewModel model = new CityViewModel();
 
-                model.EffectiveDate = weatherResponse.Result.EffectiveDate;
-                model.EffectiveEpochDate = weatherResponse.Result.EffectiveEpochDate;
-                model.Severity = weatherResponse.Result.Severity;
-                model.Text = weatherResponse.Result.Text;
-                model.Category = weatherResponse.Result.Category;
-                model.EndDate = weatherResponse.Result.EndDate;
-                model.EndEpochDate = weatherResponse.Result.EndEpochDate;
-                model.MobileLink = weatherResponse.Result.MobileLink;
-                model.Link = weatherResponse.Result.Link;
+            model.EffectiveDate = weatherResponse.Result.EffectiveDate;
+            model.EffectiveEpochDate = weatherResponse.Result.EffectiveEpochDate;
+            model.Severity = weatherResponse.Result.Severity;
+            model.Text = weatherResponse.Result.Text;
+            model.Category = weatherResponse.Result.Category;
+            model.EndDate = weatherResponse.Result.EndDate;
+            model.EndEpochDate = weatherResponse.Result.EndEpochDate;
+            model.MobileLink = weatherResponse.Result.MobileLink;
+            model.Link = weatherResponse.Result.Link;
 
             model.Date = dto.Date;
             model.EpochDate = dto.EpochDate;
