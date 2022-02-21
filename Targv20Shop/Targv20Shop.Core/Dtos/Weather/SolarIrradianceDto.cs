@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Targv20Shop.Models.Weather
+namespace Targv20Shop.Core.Dtos.Weather
 {
-    public class SolarIrradiance
+    public class SolarIrradianceDto
     {
+        [JsonProperty("Value")]
         public double Value { get; set; }
+
+        [JsonProperty("Unit")]
         public string Unit { get; set; }
+
+        [JsonProperty("UnitType")]
         public int UnitType { get; set; }
     }
 }

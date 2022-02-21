@@ -93,8 +93,5 @@ namespace Targv20Shop.ApplicationServices.Services
 
             return uniqueFileName;
         }
-
-
-
     }
 }

@@ -7,7 +7,7 @@ namespace Targv20Shop.Core.Dtos.Weather
 {
     public class TemperatureDto
     {
-        public Minimum Minimum { get; set; }
-        public Maximum Maximum { get; set; }
+        public MinimumDto Minimum { get; set; }
+        public MaximumDto Maximum { get; set; }
     }
 }

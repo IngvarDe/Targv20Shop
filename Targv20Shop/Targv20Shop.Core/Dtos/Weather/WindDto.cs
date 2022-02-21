@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Targv20Shop.Models.Weather
+namespace Targv20Shop.Core.Dtos.Weather
 {
-    public class Wind
+    public class WindDto
     {
-        public Speed Speed { get; set; }
-        public Direction Direction { get; set; }
+        public SpeedDto Speed { get; set; }
+        public DirectionDto Direction { get; set; }
     }
 }
