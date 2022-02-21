@@ -1,7 +1,4 @@
 ﻿using Nancy.Json;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp;
 using System.Net;
 using System.Threading.Tasks;
 using Targv20Shop.Core.Dtos.Weather;
@@ -14,7 +11,7 @@ namespace Targv20Shop.ApplicationServices.Services
     {
         public async Task<WeatherResultDto> WeatherDetail(WeatherResultDto dto)
         {
-            string apikey = "tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5";
+            //string apikey = "tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5";
             var url = $"http://dataservice.accuweather.com/forecasts/v1/daily/1day/127964?apikey=tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5&metric=true";
 
             using (WebClient client = new WebClient())
@@ -57,26 +54,6 @@ namespace Targv20Shop.ApplicationServices.Services
                 var jsonString = new JavaScriptSerializer().Serialize(dto);
             }
             return dto;
-        }
-
-        WeatherResultDto IWeatherForecastServices.GetForecast(string city)
-        {
-            string appKey = "tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5";
-            // Connection String
-            var client = new RestClient($"http://dataservice.accuweather.com/forecasts/v1/daily/1day/127964?apikey=tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5&metric=true");
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-
-            if (response.IsSuccessful)
-            {
-                // Deserialize the string content into JToken object
-                var content = JsonConvert.DeserializeObject<JToken>(response.Content);
-
-                // Deserialize the JToken object into our WeatherResponse Class
-                return content.ToObject<WeatherResultDto>();
-            }
-
-            return null;
         }
     }
 }

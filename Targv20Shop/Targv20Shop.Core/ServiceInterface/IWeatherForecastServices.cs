@@ -7,7 +7,5 @@ namespace Targv20Shop.Core.ServiceInterface
     public interface IWeatherForecastServices
     {
         Task<WeatherResultDto> WeatherDetail(WeatherResultDto dto);
-
-        WeatherResultDto GetForecast(string city);
     }
 }

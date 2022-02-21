@@ -10,8 +10,6 @@ namespace Targv20Shop.Core.Dtos.Weather
 
         [JsonProperty("EpochDate")]
         public int EpochDate { get; set; }
-
-
         public SunDto Sun { get; set; }
         public MoonDto Moon { get; set; }
         public TemperatureDto Temperature { get; set; }

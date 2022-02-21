@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+
 namespace Targv20Shop.Core.Dtos.Weather
 {
     public class WeatherRootDto

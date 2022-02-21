@@ -1,54 +1,24 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 
 namespace Targv20Shop.Core.Dtos.Weather
 {
     public class WeatherResultDto
     {
-        //[JsonProperty("EffectiveDate")]
         public string EffectiveDate { get; set; }
-
-        //[JsonProperty("EffectiveEpochDate")]
         public Int64 EffectiveEpochDate { get; set; }
-
-        //[JsonProperty("Severity")]
         public int Severity { get; set; }
-
-        //[JsonProperty("Text")]
         public string Text { get; set; }
-
-        //[JsonProperty("Category")]
         public string Category { get; set; }
-
-        //[JsonProperty("EndDate")]
         public string EndDate { get; set; }
-
-        //[JsonProperty("EndEpochDate")]
         public Int64 EndEpochDate { get; set; }
-
-        //[JsonProperty("MobileLink")]
         public string MobileLink { get; set; }
-
-        //[JsonProperty("Link")]
         public string Link { get; set; }
-
-        //[JsonProperty("Date")]
         public string Date { get; set; }
-
-        //[JsonProperty("EpochDate")]
         public Int64 EpochDate { get; set; }
-
-        //[JsonProperty("TempMinValue")]
         public double TempMinValue { get; set; }
-
-        //[JsonProperty("TempMinUnit")]
         public string TempMinUnit { get; set; }
-
-        //[JsonProperty("TempMinUnitType")]
         public int TempMinUnitType { get; set; }
-
-
         public double TempMaxValue { get; set; }
         public string TempMaxUnit { get; set; }
         public int TempMaxUnitType { get; set; }
