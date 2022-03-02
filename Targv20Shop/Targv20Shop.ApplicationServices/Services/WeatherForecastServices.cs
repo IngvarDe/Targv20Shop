@@ -11,10 +11,10 @@ namespace Targv20Shop.ApplicationServices.Services
     {
         public async Task<WeatherResultDto> WeatherDetail(WeatherResultDto dto)
         {
-            //string apikey = "tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5";
-            var url = $"http://dataservice.accuweather.com/forecasts/v1/daily/1day/127964?apikey=tijodrFSC6VO2AQIyEAHAPl2tAwnbpI5&metric=true";
+            //string apikey = "2LBA498kppCQjyb9ZAh5IgNuMYgZZDEr";
+            var url = $"http://dataservice.accuweather.com/forecasts/v1/daily/1day/127964?apikey=2LBA498kppCQjyb9ZAh5IgNuMYgZZDEr&metric=true";
 
-            using (WebClient client = new WebClient())
+            using (WebClient client = new())
             {
                 string json = client.DownloadString(url);
                 //ainult ühe classi saab deserialiseerida
@@ -42,14 +42,10 @@ namespace Targv20Shop.ApplicationServices.Services
                 dto.DayIcon = weatherInfo.DailyForecasts[0].Day.Icon;
                 dto.DayIconPhrase = weatherInfo.DailyForecasts[0].Day.IconPhrase;
                 dto.DayHasPrecipitation = weatherInfo.DailyForecasts[0].Day.HasPrecipitation;
-                dto.DayPrecipitationType = weatherInfo.DailyForecasts[0].Day.PrecipitationType;
-                dto.DayPrecipitationIntensity = weatherInfo.DailyForecasts[0].Day.PrecipitationIntensity;
 
                 dto.NightIcon = weatherInfo.DailyForecasts[0].Night.Icon;
                 dto.NightIconPhrase = weatherInfo.DailyForecasts[0].Night.IconPhrase;
                 dto.NightHasPrecipitation = weatherInfo.DailyForecasts[0].Night.HasPrecipitation;
-                dto.NightPrecipitationType = weatherInfo.DailyForecasts[0].Night.PrecipitationType;
-                dto.NightPrecipitationIntensity = weatherInfo.DailyForecasts[0].Night.PrecipitationIntensity;
 
                 var jsonString = new JavaScriptSerializer().Serialize(dto);
             }
