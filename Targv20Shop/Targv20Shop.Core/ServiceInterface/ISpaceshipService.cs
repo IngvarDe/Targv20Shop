@@ -5,9 +5,9 @@ using Targv20Shop.Core.Dtos;
 
 namespace Targv20Shop.Core.ServiceInterface
 {
-    public interface ISpaceshipService
+    public interface ISpaceshipService : IApplicationService
     {
-        Task<Spaceship> Edit(Guid id);
+        Task<Spaceship> GetAsync(Guid id);
         Task<Spaceship> Add(SpaceshipDto dto);
         Task<Spaceship> Update(SpaceshipDto dto);
         Task<Spaceship> Delete(Guid id);

@@ -27,8 +27,6 @@ namespace Targv20Shop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddDbContext<Targv20ShopDbContext>(options =>
                 options.UseSqlServer(_config["DeafultConnetion"]));
 
@@ -36,6 +34,8 @@ namespace Targv20Shop
             services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<ISpaceshipService, SpaceshipServices>();
             services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

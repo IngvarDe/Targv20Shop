@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,18 @@ namespace Targv20Shop.Controllers
 
         private readonly Targv20ShopDbContext _context;
         private readonly ISpaceshipService _spaceshipService;
+        private readonly ILogger<SpaceshipController> _logger;
 
         public SpaceshipController
             (
                 Targv20ShopDbContext context,
-                ISpaceshipService spaceshipService
+                ISpaceshipService spaceshipService,
+                ILogger logger
             )
         {
             _context = context;
             _spaceshipService = spaceshipService;
+            _logger = (ILogger<SpaceshipController>)logger;
         }
 
         [HttpGet]
@@ -91,7 +95,7 @@ namespace Targv20Shop.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var spaceship = await _spaceshipService.Edit(id);
+            var spaceship = await _spaceshipService.GetAsync(id);
             if (spaceship == null)
             {
                 return NotFound();

@@ -67,7 +67,7 @@ namespace Targv20Shop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(ProductViewModel model)
+        public async Task<IActionResult> AddPost(ProductViewModel model)
         {
             var dto = new ProductDto()
             {
@@ -79,13 +79,13 @@ namespace Targv20Shop.Controllers
                 ModifiedAt = model.ModifiedAt,
                 CreatedAt = model.CreatedAt,
                 Files = model.Files,
-                ExistingFilePaths = model.ExistingFilePaths
-                    .Select(x => new ExistingFilePathDto
-                    { 
-                        PhotoId = x.PhotoId,
-                        FilePath = x.FilePath,
-                        ProductId = x.ProductId
-                    }).ToArray()
+                //ExistingFilePaths = model.ExistingFilePaths
+                //    .Select(x => new ExistingFilePathDto
+                //    { 
+                //        PhotoId = x.PhotoId,
+                //        FilePath = x.FilePath,
+                //        ProductId = x.ProductId
+                //    }).ToArray()
             };
 
             var result = await _productService.Add(dto);
