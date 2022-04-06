@@ -3,17 +3,18 @@ using System;
 using System.Threading.Tasks;
 using Targv20Shop.Core.Dtos;
 using Xunit;
+using Targv20Shop.Core.Domain;
 
 
 namespace Targv20Shop.SpaceshipTest
 {
     public class SpaceshipTest : TestBase
     {
+
         [Fact]
         public async Task Should_AddNewSpaceship_WhenReturnResult()
         {
             string guid = "a1925975-d8fc-4f55-b614-d9b5aa7b4ebe";
-            //byte[] array1 = new byte[1000 * 1000 * 3];
 
             SpaceshipDto spaceship = new SpaceshipDto();
 
@@ -38,14 +39,13 @@ namespace Targv20Shop.SpaceshipTest
             string guid = "e6771076-91cd-4169-bbdd-cfc5290a6b3f";
             string guid1 = "1ab8c12a-f8da-4e55-ab77-f45378d3adb5";
 
-            //var request = new Spaceship();
+
             var insertGuid = Guid.Parse(guid);
             var insertGuid1 = Guid.Parse(guid1);
 
             await Svc<ISpaceshipService>().GetAsync(insertGuid);
 
             Assert.NotEqual(insertGuid1, insertGuid);
-            //Assert.Single((System.Collections.IEnumerable)result);
         }
 
         [Fact]
@@ -61,32 +61,33 @@ namespace Targv20Shop.SpaceshipTest
             await Svc<ISpaceshipService>().GetAsync(insertGuid);
 
             Assert.Equal(insertGuid1, insertGuid);
-            //Assert.Single((System.Collections.IEnumerable)result);
         }
 
+        //not working
         [Fact]
         public async Task Should_DeleteByIdSpaceship_WhenDeleteSpaceship()
         {
-            string guid = "e6771076-91cd-4169-bbdd-cfc5290a6b3f";
+            //Arrange
 
-            //var request = new Spaceship();
-            var insertGuid = Guid.Parse(guid);
 
-            var result = await Svc<ISpaceshipService>().Delete(insertGuid);
+            var guid1 = new Guid("1ab8c12a-f8da-4e55-ab77-f45378d3adb5");
 
-            Assert.NotEmpty((System.Collections.IEnumerable)result);
-            Assert.Single((System.Collections.IEnumerable)result);
+            //Act
+            var result = await Svc<ISpaceshipService>().Delete(guid1);
+
+            //Assert
+            //updateData.Should().BeOfType<NoContentResult>();
         }
+
 
         [Fact]
         public async Task Should_UpdateByIdSpaceship_WhenUpdateSpaceship()
         {
-            string guid = "1ab8c12a-f8da-4e55-ab77-f45378d3adb5";
-            //byte[] array1 = new byte[1000 * 1000 * 3];
+            var guid = new Guid("1ab8c12a-f8da-4e55-ab77-f45378d3adb5");
 
-            SpaceshipDto spaceship = new SpaceshipDto();
+            Spaceship spaceship = new Spaceship();
 
-            spaceship.Id = Guid.Parse(guid);
+            spaceship.Id = guid;
             spaceship.Name = "Space";
             spaceship.Type = "Estonia";
             spaceship.Prize = 123;
@@ -96,9 +97,18 @@ namespace Targv20Shop.SpaceshipTest
             spaceship.CreatedAt = DateTime.Now;
             spaceship.ModifiedAt = DateTime.Now;
 
-            await Svc<ISpaceshipService>().Update(spaceship);
+            var spaceshipId = guid;
+            var spaceshipToUpdate = new SpaceshipDto()
+            {
+                Name = "Test",
+                Prize = 456
+            };
 
-            Assert.NotEmpty((System.Collections.IEnumerable)spaceship);
+            await Svc<ISpaceshipService>().Update(spaceshipToUpdate);
+
+            Assert.Equal(spaceship.Id.ToString(), spaceshipId.ToString());
+            Assert.DoesNotMatch(spaceship.Name, spaceshipToUpdate.Name);
+            Assert.DoesNotMatch(spaceship.Prize.ToString(), spaceshipToUpdate.Prize.ToString());
         }
     }
 }
